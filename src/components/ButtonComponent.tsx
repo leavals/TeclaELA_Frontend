@@ -31,7 +31,7 @@ const ButtonComponent: React.FC = () => {
         </button>
         <button
           onClick={() => handleButtonClick('i')}
-          className="bg-blue-500 text-white font-bold py-8 px-4 rounded-full text-3xl w-full"
+          className="bg-green-500 text-white font-bold py-8 px-4 rounded-full text-3xl w-full"
         >
           i
         </button>
