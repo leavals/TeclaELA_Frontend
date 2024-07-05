@@ -11,6 +11,10 @@ const ButtonComponent: React.FC = () => {
     }
   };
 
+  const buttonStyle = "text-white font-bold py-8 px-4 rounded-full text-3xl w-full";
+  const blueButtonStyle = `bg-blue-500 ${buttonStyle}`;
+  const redButtonStyle = `bg-red-500 ${buttonStyle}`;
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
       <div className="bg-white p-4 rounded shadow-md w-full max-w-md text-center text-4xl mb-4">
@@ -19,37 +23,37 @@ const ButtonComponent: React.FC = () => {
       <div className="grid grid-cols-3 gap-4 w-full max-w-md">
         <button
           onClick={() => handleButtonClick('a')}
-          className="bg-blue-500 text-white font-bold py-8 px-4 rounded-full text-3xl w-full"
+          className={blueButtonStyle}
         >
           a
         </button>
         <button
           onClick={() => handleButtonClick('e')}
-          className="bg-blue-500 text-white font-bold py-8 px-4 rounded-full text-3xl w-full"
+          className={blueButtonStyle}
         >
           e
         </button>
         <button
           onClick={() => handleButtonClick('i')}
-          className="bg-green-500 text-white font-bold py-8 px-4 rounded-full text-3xl w-full"
+          className={blueButtonStyle}
         >
           i
         </button>
         <button
           onClick={() => handleButtonClick('o')}
-          className="bg-blue-500 text-white font-bold py-8 px-4 rounded-full text-3xl w-full"
+          className={blueButtonStyle}
         >
           o
         </button>
         <button
           onClick={() => handleButtonClick('u')}
-          className="bg-blue-500 text-white font-bold py-8 px-4 rounded-full text-3xl w-full"
+          className={blueButtonStyle}
         >
           u
         </button>
         <button
           onClick={() => handleButtonClick('DELETE')}
-          className="bg-red-500 text-white font-bold py-8 px-4 rounded-full text-3xl w-full"
+          className={redButtonStyle}
         >
           ⌫
         </button>
