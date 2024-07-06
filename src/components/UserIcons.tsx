@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faRepeat, faGear } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faRepeat, faGear, faKeyboard } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 
 const UserIcons: React.FC = () => {
@@ -18,6 +18,7 @@ const UserIcons: React.FC = () => {
   return (
     <div className="flex justify-center space-x-8 mt-2 mb-4">
       <FontAwesomeIcon icon={faRepeat} size="4x" className="text-gray-500" onClick={() => navigate('/action-buttons')} />
+      <FontAwesomeIcon icon={faKeyboard} size="4x" className="text-gray-500" onClick={() => navigate('/keyboard')} />
       <FontAwesomeIcon icon={faUser} size="4x" className="text-gray-500" onClick={handleUserClick} />
       <FontAwesomeIcon icon={faGear} size="4x" className="text-gray-500" onClick={() => navigate('/configuration')} />
     </div>

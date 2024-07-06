@@ -45,7 +45,7 @@ const User: React.FC = () => {
         <div className="flex flex-col space-y-4">
           <button className="bg-blue-500 text-white p-4 rounded text-2xl">Editar mis datos</button>
           <button className="bg-blue-500 text-white p-4 rounded text-2xl" onClick={handleOpenModal}>Configurar Teléfono Alerta</button>
-          <button className="bg-blue-500 text-white p-4 rounded text-2xl">Configurar botones</button>
+          <button className="bg-blue-500 text-white p-4 rounded text-2xl" onClick={() => navigate('/action-buttons')}>Configurar botones</button>
           <button className="bg-blue-500 text-white p-4 rounded text-2xl" onClick={handleLogout}>Cerrar Mi Sesión</button>
         </div>
       </div>
