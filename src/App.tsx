@@ -5,6 +5,7 @@ import Register from './components/Register';
 import User from './components/User';
 import Keyboard from './components/Keyboard';
 import Configuration from './components/Configuration';
+import ActionButtons from './components/ActionButtons';
 
 const App: React.FC = () => {
   return (
@@ -16,6 +17,7 @@ const App: React.FC = () => {
         <Route path="/user" element={<User />} />
         <Route path="/keyboard" element={<Keyboard />} />
         <Route path="/configuration" element={<Configuration />} />
+        <Route path="/action-buttons" element={<ActionButtons />} />
       </Routes>
     </Router>
   );
