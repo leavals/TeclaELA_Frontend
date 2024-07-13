@@ -14,14 +14,21 @@ const Register: React.FC = () => {
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      await axios.post(`${process.env.REACT_APP_API_URL}/register/`, {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/register/`, {
         username,
         email,
         password,
       });
-      navigate('/login'); // Redirigir a la página de login después de registrarse
-    } catch (err) {
-      setError('Registration failed. Please check your details and try again.');
+      if (response.status === 201) {
+        navigate('/login'); // Redirigir a la página de login después de registrarse
+      }
+    } catch (err: any) {
+      if (err.response && err.response.data) {
+        // Mostrar mensajes de error específicos del backend
+        setError(err.response.data.detail || 'Registration failed. Please check your details and try again.');
+      } else {
+        setError('Registration failed. Please check your details and try again.');
+      }
     }
   };
 
