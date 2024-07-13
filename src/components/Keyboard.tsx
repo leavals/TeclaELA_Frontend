@@ -26,7 +26,7 @@ const Keyboard: React.FC = () => {
   const [username, setUsername] = useState<string | null>(null);
   const [suggestions, setSuggestions] = useState<string[]>([]);
 
-  const [buttonSize, setButtonSize] = useState(localStorage.getItem('buttonSize') || 'w-32 h-16');
+  const [buttonSize, setButtonSize] = useState(localStorage.getItem('buttonSize') || 'w-full');
   const [textSize, setTextSize] = useState(localStorage.getItem('textSize') || 'text-lg');
   const [buttonColor, setButtonColor] = useState(localStorage.getItem('buttonColor') || 'bg-blue-500');
   const [buttonNumberColor, setButtonNumberColor] = useState(localStorage.getItem('buttonNumberColor') || 'bg-blue-600');
@@ -138,36 +138,42 @@ const Keyboard: React.FC = () => {
         </div>
         <FontAwesomeIcon icon={faCirclePlay} size="5x" className="text-gray-500 ml-4" onClick={handleSpeak} />
       </div>
-      <div className="grid grid-cols-3 gap-2 w-full max-w-md mb-4">
-        {suggestions.map((suggestion, index) => (
-          <button key={index} onClick={() => setText(text + ' ' + suggestion)} className="bg-blue-500 text-white p-2 rounded">
-            {suggestion}
-          </button>
-        ))}
-      </div>
-      <div className="flex flex-col items-center justify-center w-full max-w-3xl mx-auto flex-grow mt-4">
-        {buttonRows.map((row, rowIndex) => (
-          <div key={rowIndex} className={`grid grid-cols-${row.length} gap-2 w-full mb-2`}>
-            {row.map((char, index) => (
-              typeof char === 'string' ? (
-                <Button
-                  key={index}
-                  char={char}
-                  onClick={handleButtonClick}
-                  color={specialButtonColors[char] || (char.match(/[0-9]/) && numLock ? buttonNumberColor : buttonColor)}
-                  active={(shift && char === 'SHIFT') || (capsLock && char === 'MAY') || (numLock && char === 'NUM')}
-                  size={buttonSize}
-                  textSize={textSize}
-                  capsLock={capsLock}
-                  shift={shift}
-                />
-              ) : (
-                char // Renderiza el componente WhatsAppButton si el usuario está logueado
-              )
-            ))}
-          </div>
-        ))}
-      </div>
+      <div className="grid grid-cols-3 gap-2 w-full min-w-md mb-4">
+  {suggestions.map((suggestion, index) => (
+    <button
+      key={index}
+      onClick={() => setText(text + ' ' + suggestion)}
+      className="bg-orange-500 text-white text-4xl p-3 rounded flex items-center justify-center hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75"
+    >
+      {suggestion}
+    </button>
+  ))}
+</div>
+
+      <div className="flex flex-col items-center justify-center w-full min-w-3xl mx-auto flex-grow mt-4 h-full">
+  {buttonRows.map((row, rowIndex) => (
+    <div key={rowIndex} className={`grid grid-cols-${row.length} gap-2 w-full mb-2 flex-grow`}>
+      {row.map((char, index) => (
+        typeof char === 'string' ? (
+          <Button
+            key={index}
+            char={char}
+            onClick={handleButtonClick}
+            color={specialButtonColors[char] || (char.match(/[0-9]/) && numLock ? buttonNumberColor : buttonColor)}
+            active={(shift && char === 'SHIFT') || (capsLock && char === 'MAY') || (numLock && char === 'NUM')}
+            size={buttonSize}
+            textSize={textSize}
+            capsLock={capsLock}
+            shift={shift}
+          />
+        ) : (
+          char // Renderiza el componente WhatsAppButton si el usuario está logueado
+        )
+      ))}
+    </div>
+  ))}
+</div>
+
     </div>
   );
 };
