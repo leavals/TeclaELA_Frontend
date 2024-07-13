@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCirclePlay } from '@fortawesome/free-solid-svg-icons';
+import { faCirclePlay, faTrash, faDeleteLeft } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import { useSpeechSynthesis } from 'react-speech-kit';
 import { getSuggestions } from '../getSuggestions';
@@ -8,6 +8,7 @@ import Button from './Button';
 import WhatsAppButton from './WhatsAppButton';
 import EmergencyButton from './EmergencyButton';
 import UserIcons from './UserIcons';
+import IconButton from './IconButton';
 
 const specialButtonColors: { [key: string]: string } = {
   'BOR': 'bg-red-500',
@@ -106,19 +107,19 @@ const Keyboard: React.FC = () => {
         ['NUM', '1', '2', '3'],
         ['4', '5', '6', '7'],
         ['8', '9', '0', 'ESP'],
-        ['BOR', 'q', 'w', 'e'],
+        [<IconButton icon={faDeleteLeft} onClick={() => handleButtonClick('BOR')} color="bg-red-500" size={buttonSize} textSize={textSize} key="BOR" />, 'q', 'w', 'e'],
         ['r', 't', 'y', 'u'],
         ['i', 'o', 'p', 'a'],
         ['s', 'd', 'f', 'g'],
         ['h', 'j', 'k', 'l'],
         ['ñ', 'z', 'x', 'c'],
         ['v', 'b', 'n', 'm'],
-        ['ENT', 'SHIFT', 'MAY', 'TRASH'],
+        [<IconButton icon={faDeleteLeft} onClick={() => handleButtonClick('BOR')} color="bg-red-500" size={buttonSize} textSize={textSize} key="BOR" />, 'SHIFT', 'MAY', <IconButton icon={faTrash} onClick={() => handleButtonClick('TRASH')} color="bg-red-500" size={buttonSize} textSize={textSize} key="TRASH" />],
         [emergencyButton, whatsappButton],
       ];
     } else {
       return [
-        ['NUM', 'ESP', 'BOR', 'q'],
+        ['NUM', 'ESP', <IconButton icon={faDeleteLeft} onClick={() => handleButtonClick('BOR')} color="bg-red-500" size={buttonSize} textSize={textSize} key="BOR" />, 'q'],
         ['w', 'e', 'r', 't'],
         ['y', 'u', 'i', 'o'],
         ['p', 'a', 's', 'd'],
@@ -126,7 +127,7 @@ const Keyboard: React.FC = () => {
         ['k', 'l', 'ñ', 'z'],
         ['x', 'c', 'v', 'b'],
         ['n', 'm', 'ESP', 'ENT'],
-        ['SHIFT', 'MAY', 'BOR', 'TRASH'],
+        ['SHIFT', 'MAY', <IconButton icon={faDeleteLeft} onClick={() => handleButtonClick('BOR')} color="bg-red-500" size={buttonSize} textSize={textSize} key="BOR" />, <IconButton icon={faTrash} onClick={() => handleButtonClick('TRASH')} color="bg-red-500" size={buttonSize} textSize={textSize} key="TRASH" />],
         [emergencyButton, whatsappButton],
       ];
     }
