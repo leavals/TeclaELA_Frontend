@@ -10,7 +10,7 @@ const EmergencyButton: React.FC<EmergencyButtonProps> = ({ onClick, className })
   return (
     <button
       onClick={onClick}
-      className={`bg-red-500 text-white p-4 rounded text-4xl ${className}`} // Añadir className aquí
+      className={`bg-red-500 text-white p-4 rounded text-3xl ${className}`} // Añadir className aquí
     >
       EMERGENCIA
     </button>

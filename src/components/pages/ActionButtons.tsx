@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import UserIcons from './UserIcons';
+import UserIcons from '../UserIcons';
 import Modal from 'react-modal';
-import ImageUploadForm from './ImageUploadForm';
+import ImageUploadForm from '../ImageUploadForm';
 
 Modal.setAppElement('#root'); // Asegúrate de que el ID coincida con el ID del elemento raíz de tu aplicación
 

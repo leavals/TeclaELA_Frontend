@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
-import Button from './Button';
+import Button from '../Button';
 
 const Configuration: React.FC = () => {
   const [textSize, setTextSize] = useState(localStorage.getItem('textSize') || 'text-lg');

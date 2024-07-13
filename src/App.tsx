@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Login from './components/Login';
-import Register from './components/Register';
+import Login from './components/pages/Login';
+import Register from './components/pages/Register';
 import User from './components/User';
-import Keyboard from './components/Keyboard';
-import Configuration from './components/Configuration';
-import ActionButtons from './components/ActionButtons';
+import Keyboard from './components/pages/Keyboard';
+import Configuration from './components/pages/Configuration';
+import ActionButtons from './components/pages/ActionButtons';
 
 const App: React.FC = () => {
   return (

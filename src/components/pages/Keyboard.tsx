@@ -3,12 +3,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCirclePlay, faTrash, faDeleteLeft } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import { useSpeechSynthesis } from 'react-speech-kit';
-import { getSuggestions } from '../getSuggestions';
-import Button from './Button';
-import WhatsAppButton from './WhatsAppButton';
-import EmergencyButton from './EmergencyButton';
-import UserIcons from './UserIcons';
-import IconButton from './IconButton';
+import { getSuggestions } from '../../getSuggestions';
+import Button from '../Button';
+import WhatsAppButton from '../WhatsAppButton';
+import EmergencyButton from '../EmergencyButton';
+import UserIcons from '../UserIcons';
+import IconButton from '../IconButton';
 
 const specialButtonColors: { [key: string]: string } = {
   'BOR': 'bg-red-500',
