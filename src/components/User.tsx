@@ -15,7 +15,7 @@ const User = () => {
 
     useEffect(() => {
         const fetchUsers = async () => {
-            const response = await fetch('https://teclaela-backend.onrender.com/api/users/');
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/users/`);
             const data: User[] = await response.json();
             setUsers(data);
         };
