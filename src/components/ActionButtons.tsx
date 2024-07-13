@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import UserIcons from './UserIcons';
 import Modal from 'react-modal';
 import ImageUploadForm from './ImageUploadForm';
@@ -11,8 +11,19 @@ const ActionButtons: React.FC = () => {
   const [editMode, setEditMode] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedButton, setSelectedButton] = useState<number | null>(null);
-  const [images, setImages] = useState<(string | null)[]>(Array(10).fill(null));
-  const [imageNames, setImageNames] = useState<string[]>(Array(10).fill(''));
+  const [images, setImages] = useState<(string | null)[]>(() => {
+    const savedImages = localStorage.getItem('images');
+    return savedImages ? JSON.parse(savedImages) : Array(10).fill(null);
+  });
+  const [imageNames, setImageNames] = useState<string[]>(() => {
+    const savedImageNames = localStorage.getItem('imageNames');
+    return savedImageNames ? JSON.parse(savedImageNames) : Array(10).fill('');
+  });
+
+  useEffect(() => {
+    localStorage.setItem('images', JSON.stringify(images));
+    localStorage.setItem('imageNames', JSON.stringify(imageNames));
+  }, [images, imageNames]);
 
   const handleImageClick = (index: number) => {
     setSelectedImage(images[index]);
