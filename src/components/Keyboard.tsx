@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCirclePlay, faTrashCan, faDeleteLeft } from '@fortawesome/free-solid-svg-icons';
+import { faCirclePlay } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import { useSpeechSynthesis } from 'react-speech-kit';
 import { getSuggestions } from '../getSuggestions';
@@ -61,24 +61,37 @@ const Keyboard: React.FC = () => {
   }, [text]);
 
   const handleButtonClick = (char: string) => {
-    if (char === 'BOR') {
-      setText(text.slice(0, -1));
-    } else if (char === 'ESP') {
-      setText(text + ' ');
-    } else if (char === 'ENT') {
-      setText(text + '\n');
-    } else if (char === 'SHIFT') {
-      setShift(!shift);
-    } else if (char === 'MAY') {
-      setCapsLock(!capsLock);
-    } else if (char === 'NUM') {
-      setNumLock(!numLock);
-    } else if (char === 'TRASH') {
-      setText('');
-    } else {
-      const newChar = capsLock || shift ? char.toUpperCase() : char.toLowerCase();
-      setText(text + newChar);
-      if (shift) setShift(false);
+    switch (char) {
+      case 'BOR':
+        setText(text.slice(0, -1));
+        break;
+      case 'ESP':
+        setText(text + ' ');
+        break;
+      case 'ENT':
+        setText(text + '\n');
+        break;
+      case 'SHIFT':
+        setShift(!shift);
+        break;
+      case 'MAY':
+        setCapsLock(!capsLock);
+        break;
+      case 'NUM':
+        setNumLock(!numLock);
+        break;
+      case 'TRASH':
+        setText('');
+        break;
+      default:
+        if (char.length === 1) {
+          const newChar = capsLock || shift ? char.toUpperCase() : char.toLowerCase();
+          setText(text + newChar);
+          if (shift) setShift(false);
+        } else {
+          setText(text + char);
+        }
+        break;
     }
   };
 
@@ -139,41 +152,40 @@ const Keyboard: React.FC = () => {
         <FontAwesomeIcon icon={faCirclePlay} size="5x" className="text-gray-500 ml-4" onClick={handleSpeak} />
       </div>
       <div className="grid grid-cols-3 gap-2 w-full min-w-md mb-4">
-  {suggestions.map((suggestion, index) => (
-    <button
-      key={index}
-      onClick={() => setText(text + ' ' + suggestion)}
-      className="bg-orange-500 text-white text-4xl p-3 rounded flex items-center justify-center hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75"
-    >
-      {suggestion}
-    </button>
-  ))}
-</div>
+        {suggestions.map((suggestion, index) => (
+          <button
+            key={index}
+            onClick={() => setText(text + ' ' + suggestion)}
+            className="bg-orange-500 text-white text-4xl p-3 rounded flex items-center justify-center hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75"
+          >
+            {suggestion}
+          </button>
+        ))}
+      </div>
 
       <div className="flex flex-col items-center justify-center w-full min-w-3xl mx-auto flex-grow mt-4 h-full">
-  {buttonRows.map((row, rowIndex) => (
-    <div key={rowIndex} className={`grid grid-cols-${row.length} gap-2 w-full mb-2 flex-grow`}>
-      {row.map((char, index) => (
-        typeof char === 'string' ? (
-          <Button
-            key={index}
-            char={char}
-            onClick={handleButtonClick}
-            color={specialButtonColors[char] || (char.match(/[0-9]/) && numLock ? buttonNumberColor : buttonColor)}
-            active={(shift && char === 'SHIFT') || (capsLock && char === 'MAY') || (numLock && char === 'NUM')}
-            size={buttonSize}
-            textSize={textSize}
-            capsLock={capsLock}
-            shift={shift}
-          />
-        ) : (
-          char // Renderiza el componente WhatsAppButton si el usuario está logueado
-        )
-      ))}
-    </div>
-  ))}
-</div>
-
+        {buttonRows.map((row, rowIndex) => (
+          <div key={rowIndex} className={`grid grid-cols-${row.length} gap-2 w-full mb-2 flex-grow`}>
+            {row.map((char, index) => (
+              typeof char === 'string' ? (
+                <Button
+                  key={index}
+                  char={char}
+                  onClick={handleButtonClick}
+                  color={specialButtonColors[char] || (char.match(/[0-9]/) && numLock ? buttonNumberColor : buttonColor)}
+                  active={(shift && char === 'SHIFT') || (capsLock && char === 'MAY') || (numLock && char === 'NUM')}
+                  size={buttonSize}
+                  textSize={textSize}
+                  capsLock={capsLock}
+                  shift={shift}
+                />
+              ) : (
+                char // Renderiza el componente WhatsAppButton si el usuario está logueado
+              )
+            ))}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

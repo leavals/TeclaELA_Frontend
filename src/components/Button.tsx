@@ -12,7 +12,7 @@ interface ButtonProps {
 }
 
 const Button: React.FC<ButtonProps> = ({ char, onClick, color, active, size, textSize, capsLock, shift }) => {
-  const isSpecialChar = typeof char !== 'string';
+  const isSpecialChar = typeof char !== 'string' || char.length > 1;
   const displayChar = isSpecialChar ? char : capsLock || shift ? char.toUpperCase() : char.toLowerCase();
 
   const handleClick = () => {

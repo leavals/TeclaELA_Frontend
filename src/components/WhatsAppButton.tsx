@@ -19,7 +19,7 @@ const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({ className, ...props }) 
       className={`w-full bg-green-500 text-white p-4 rounded text-2xl ${className}`}
       {...props}
     >
-      <FontAwesomeIcon icon={faWhatsapp} />
+      <FontAwesomeIcon icon={faWhatsapp} size="2x" />
     </button>
   );
 };
