@@ -74,7 +74,7 @@ const ActionButtons: React.FC = () => {
           <div key={index} className="relative">
             <button
               onClick={() => handleImageClick(index)}
-              className="bg-blue-500 text-white p-4 rounded flex flex-col items-center justify-center w-full h-24"
+              className="bg-blue-500 text-white p-4 rounded flex flex-col items-center justify-center w-full h-24 text-3xl"
             >
               {image ? (
                 <img src={image} alt={imageNames[index]} className="h-full w-full object-contain" />
@@ -84,7 +84,7 @@ const ActionButtons: React.FC = () => {
             </button>
             {editMode && (
               <button
-                className="absolute top-1 right-1 bg-red-500 text-white p-1 rounded"
+                className="absolute top-1 right-1 bg-red-500 text-white p-3 rounded"
                 onClick={() => openModal(index)}
               >
                 Editar
@@ -93,7 +93,7 @@ const ActionButtons: React.FC = () => {
           </div>
         ))}
       </div>
-      <button onClick={() => setEditMode(!editMode)} className="mt-4 bg-green-500 text-white p-2 rounded">
+      <button onClick={() => setEditMode(!editMode)} className="mt-4 bg-green-500 text-white p-10 rounded text-2xl">
         {editMode ? 'Terminar edición' : 'Editar botones'}
       </button>
       <Modal
